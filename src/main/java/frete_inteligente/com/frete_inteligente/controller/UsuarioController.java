@@ -13,7 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;

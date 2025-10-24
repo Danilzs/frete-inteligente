@@ -13,7 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/postagens")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class PostagemController {
 
     private final PostagemRepository postagemRepository;

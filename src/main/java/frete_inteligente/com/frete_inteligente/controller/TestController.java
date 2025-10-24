@@ -23,7 +23,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/test")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class TestController {
 
     private final UsuarioRepository usuarioRepository;

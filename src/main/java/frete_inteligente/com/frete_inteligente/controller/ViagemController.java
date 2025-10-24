@@ -15,7 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/viagens")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ViagemController {
 
     private final ViagemRepository viagemRepository;
