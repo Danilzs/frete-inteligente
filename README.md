@@ -1,225 +1,393 @@
-# 🚐 Frete Inteligente
+# 🚚 Frete Inteligente
 
-**MVP - Plataforma Full-Stack de Transporte Universitário**
+Sistema de gerenciamento de transporte universitário conectando motoristas, empresas de transporte e estudantes.
 
-Conectando motoristas, empresas de transporte e estudantes em uma única plataforma moderna e eficiente.
+---
 
-![Java](https://img.shields.io/badge/Java-21-orange)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-green)
-![Next.js](https://img.shields.io/badge/Next.js-16.0.0-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+## 📋 Índice
 
-## 📋 Sobre o Projeto
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Tecnologias](#tecnologias)
+- [Início Rápido](#início-rápido)
+- [Documentação](#documentação)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Como Usar](#como-usar)
 
-O **Frete Inteligente** é uma aplicação completa que facilita a conexão entre:
-- 🏢 **Empresas de transporte** que oferecem serviços
-- 🚗 **Motoristas autônomos** que buscam clientes
-- 🎓 **Estudantes** que precisam de transporte para universidades
+---
 
-### ✨ Funcionalidades Principais
+## 🎯 Sobre o Projeto
 
-- ✅ Sistema completo de autenticação (login/registro)
-- ✅ Feed dinâmico de ofertas de transporte
-- ✅ Criação e gerenciamento de postagens
-- ✅ Perfis de usuário diferenciados (Empresa, Autônomo, Cliente)
-- ✅ Interface moderna e responsiva
-- ✅ API RESTful completa
-- ✅ Integração frontend-backend funcionando
+O **Frete Inteligente** é uma plataforma web que facilita a conexão entre:
+- 🎓 **Estudantes** que precisam de transporte
+- 🚗 **Motoristas autônomos** oferecendo serviços
+- 🏢 **Empresas de transporte** com frotas organizadas
 
-## 🏗️ Arquitetura
+### Funcionalidades Principais
 
-### Stack Tecnológico
+✅ Cadastro de usuários (Estudante, Motorista, Empresa)  
+✅ Sistema de postagens de ofertas de transporte  
+✅ Criação e gerenciamento de viagens  
+✅ Check-in de passageiros  
+✅ Histórico de viagens e pagamentos  
+✅ Interface moderna e responsiva  
 
-**Backend:**
-- Java 21
-- Spring Boot 3.5.6
-- MySQL 8.0
-- JPA/Hibernate
-- Flyway (migrações)
-- Maven
+---
 
-**Frontend:**
-- Next.js 16.0.0
-- React 19.2.0
-- TypeScript 5
-- Tailwind CSS 4.1.9
-- Radix UI Components
-- pnpm
+## 🛠️ Tecnologias
 
-## 🚀 Como Executar
+### Backend
+- **Java 21** - Linguagem principal
+- **Spring Boot 3.x** - Framework
+- **MySQL 8.0** / **H2** - Bancos de dados
+- **Maven** - Gerenciamento de dependências
+- **JPA/Hibernate** - ORM
+
+### Frontend
+- **Next.js 16** - Framework React
+- **TypeScript 5** - Tipagem estática
+- **Tailwind CSS 4** - Estilização
+- **Radix UI** - Componentes acessíveis
+- **React Context** - Gerenciamento de estado
+
+### DevOps
+- **Docker** - Containerização
+- **Docker Compose** - Orquestração de containers
+
+---
+
+## 🚀 Início Rápido
 
 ### Pré-requisitos
 
-- Java 21
-- Maven 3.6+
-- MySQL 8.0
-- Node.js 18+
-- pnpm (ou npm)
+Escolha **UMA** das opções:
 
-### 1️⃣ Backend
+#### Opção 1: Docker (Recomendado)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+#### Opção 2: Local
+- Java 21+
+- Node.js 22+
+- MySQL 8.0 (opcional, pode usar H2)
+
+---
+
+### 🐳 Usando Docker (Mais Fácil)
 
 ```bash
-# 1. Certifique-se de que o MySQL está rodando na porta 3307
-# O banco será criado automaticamente
+# 1. Execute o script
+.\scripts\docker-start.bat
 
-# 2. Execute o backend
+# 2. Escolha: 1 (Desenvolvimento) ou 2 (Completo)
+
+# 3. Aguarde o build (5-10 min na primeira vez)
+
+# 4. Acesse:
+# Frontend: http://localhost:3000
+# Backend:  http://localhost:8080
+```
+
+---
+
+### 💻 Executando Localmente
+
+#### Backend
+
+```bash
+# Via Maven Wrapper (Windows)
+mvnw.cmd spring-boot:run
+
+# Via Maven instalado
 mvn spring-boot:run
 
-# O backend estará disponível em http://localhost:8080
+# Via IDE (IntelliJ IDEA, Eclipse, VS Code)
+# Abra FreteInteligenteApplication.java e clique em Run
 ```
 
-### 2️⃣ Frontend
+#### Frontend
 
 ```bash
-# 1. Navegue até a pasta do frontend
+# Instalar dependências
 cd transport-app
+npm install
 
-# 2. Instale as dependências
-pnpm install
+# Criar arquivo .env.local
+echo NEXT_PUBLIC_API_URL=http://localhost:8080/api > .env.local
 
-# 3. Crie o arquivo .env.local
-echo "NEXT_PUBLIC_API_URL=http://localhost:8080/api" > .env.local
+# Executar
+npm run dev
 
-# 4. Execute o servidor de desenvolvimento
-pnpm dev
-
-# O frontend estará disponível em http://localhost:3000
+# Acesse: http://localhost:3000
 ```
 
-### 🎉 Primeiro Acesso
+---
 
-1. Acesse `http://localhost:3000`
-2. Clique em **"Cadastre-se"**
-3. Selecione o tipo de usuário:
-   - 🏢 **Empresa de Transporte**
-   - 🚗 **Motorista Autônomo**
-   - 🎓 **Cliente/Estudante**
-4. Preencha os dados e cadastre-se
-5. Faça login com o email cadastrado
-6. Explore o sistema!
+## 📚 Documentação
+
+Toda a documentação está organizada na pasta [`docs/`](./docs):
+
+### Guias de Início
+
+| Documento | Descrição |
+|-----------|-----------|
+| [`QUICK_START.md`](./docs/QUICK_START.md) | Guia rápido completo |
+| [`GUIA-RAPIDO.md`](./docs/GUIA-RAPIDO.md) | Instruções passo a passo |
+| [`COMO-EXECUTAR-SOLUCOES.md`](./docs/COMO-EXECUTAR-SOLUCOES.md) | Soluções para problemas comuns |
+
+### Documentação Técnica
+
+| Documento | Descrição |
+|-----------|-----------|
+| [`DOCUMENTACAO-TECNICA.md`](./docs/DOCUMENTACAO-TECNICA.md) | Documentação técnica completa |
+| [`architecture.md`](./docs/architecture.md) | Arquitetura do sistema |
+| [`srs.md`](./docs/srs.md) | Especificação de requisitos |
+
+### Docker
+
+| Documento | Descrição |
+|-----------|-----------|
+| [`DOCKER-GUIA.md`](./docs/DOCKER-GUIA.md) | Guia completo de Docker |
+
+### API
+
+| Documento | Descrição |
+|-----------|-----------|
+| [`EXEMPLOS-JSON.md`](./docs/EXEMPLOS-JSON.md) | Exemplos de requisições JSON |
+
+### Resumos
+
+| Documento | Descrição |
+|-----------|-----------|
+| [`INTEGRACAO-RESUMO.md`](./docs/INTEGRACAO-RESUMO.md) | Resumo da integração |
+| [`CHECKLIST-INTEGRACAO.md`](./docs/CHECKLIST-INTEGRACAO.md) | Checklist de verificação |
+| [`RESUMO-EXECUTIVO.md`](./docs/RESUMO-EXECUTIVO.md) | Resumo executivo |
+
+---
 
 ## 📁 Estrutura do Projeto
 
 ```
 frete-inteligente/
-├── src/                          # Backend (Spring Boot)
-│   └── main/
-│       ├── java/                 # Código Java
-│       │   └── frete_inteligente/
-│       │       ├── controller/   # Controllers REST
-│       │       ├── domain/       # Entidades JPA
-│       │       ├── repository/   # Repositórios
-│       │       └── config/       # Configurações
-│       └── resources/
-│           ├── application.yml   # Configuração da aplicação
-│           └── db/migration/     # Migrações Flyway
+├── 📂 src/                        # Código-fonte backend
+│   ├── main/
+│   │   ├── java/                  # Código Java
+│   │   │   └── frete_inteligente/
+│   │   │       ├── config/        # Configurações (CORS, etc)
+│   │   │       ├── controller/    # Controllers REST
+│   │   │       ├── domain/        # Entidades JPA
+│   │   │       ├── repository/    # Repositórios
+│   │   │       └── FreteInteligenteApplication.java
+│   │   └── resources/             # Recursos
+│   │       ├── application.yml    # Configuração principal
+│   │       ├── application-h2.yml # Config H2
+│   │       └── application-mysql.yml # Config MySQL
+│   └── test/                      # Testes
 │
-├── transport-app/                # Frontend (Next.js)
-│   ├── app/                      # Páginas Next.js
-│   ├── components/               # Componentes React
-│   ├── contexts/                 # Contextos (Auth, etc)
-│   ├── services/                 # Serviços de API
-│   ├── types/                    # Tipos TypeScript
-│   └── lib/                      # Utilitários
+├── 📂 transport-app/              # Código-fonte frontend
+│   ├── app/                       # Páginas Next.js
+│   ├── components/                # Componentes React
+│   ├── contexts/                  # Context API
+│   ├── services/                  # Serviços de API
+│   ├── types/                     # Tipos TypeScript
+│   ├── lib/                       # Utilitários
+│   └── public/                    # Assets estáticos
 │
-├── docker-compose.yml            # Docker Compose (MySQL)
-├── pom.xml                       # Configuração Maven
-└── README.md                     # Este arquivo
+├── 📂 docs/                       # 📚 Documentação
+│   ├── QUICK_START.md
+│   ├── GUIA-RAPIDO.md
+│   ├── DOCUMENTACAO-TECNICA.md
+│   ├── DOCKER-GUIA.md
+│   ├── EXEMPLOS-JSON.md
+│   └── ...
+│
+├── 📂 scripts/                    # 🔧 Scripts de automação
+│   ├── docker-start.bat           # Gerenciar Docker
+│   ├── SETUP-COMPLETO.bat         # Setup backend completo
+│   ├── INICIAR-FRONTEND.bat       # Iniciar frontend
+│   ├── EXECUTAR-BACKEND.bat       # Executar backend
+│   ├── TESTAR-API.ps1             # Testar API
+│   └── DIAGNOSTICAR-ERRO.ps1      # Diagnóstico
+│
+├── 📂 docker/                     # 🐳 Arquivos Docker
+│   ├── Dockerfile                 # Imagem backend
+│   ├── docker-compose.dev.yml     # Dev (H2)
+│   └── docker-compose.full.yml    # Produção (MySQL)
+│
+├── pom.xml                        # Dependências Maven
+├── mvnw, mvnw.cmd                 # Maven Wrapper
+└── README.md                      # Este arquivo
 ```
-
-## 📡 API Endpoints
-
-### Autenticação
-- `POST /api/auth/login` - Login de usuário
-
-### Usuários
-- `GET /api/usuarios` - Listar usuários
-- `POST /api/usuarios` - Criar usuário
-- `GET /api/usuarios/{id}` - Buscar usuário
-- `PUT /api/usuarios/{id}` - Atualizar usuário
-- `DELETE /api/usuarios/{id}` - Deletar usuário
-
-### Postagens
-- `GET /api/postagens` - Listar postagens
-- `POST /api/postagens` - Criar postagem
-- `GET /api/postagens/{id}` - Buscar postagem
-- `PUT /api/postagens/{id}` - Atualizar postagem
-- `DELETE /api/postagens/{id}` - Deletar postagem
-
-### Viagens
-- `GET /api/viagens` - Listar viagens
-- `POST /api/viagens` - Criar viagem
-- `GET /api/viagens/status/{status}` - Buscar por status
-
-### Check-ins
-- `GET /api/checkins` - Listar check-ins
-- `POST /api/checkins` - Criar check-in
-
-**📚 Documentação completa:** Veja `DOCUMENTACAO-TECNICA.md`
-
-## 🔧 Configuração
-
-### Backend - application.yml
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3307/frete_inteligente
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: validate
-server:
-  port: 8080
-```
-
-### Frontend - .env.local
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8080/api
-```
-
-## 🐛 Troubleshooting
-
-### Backend não inicia
-- ✅ Verifique se o MySQL está rodando na porta 3307
-- ✅ Confirme as credenciais no `application.yml`
-- ✅ Certifique-se de que o Java 21 está instalado
-
-### Frontend não conecta
-- ✅ Verifique se o backend está rodando
-- ✅ Confirme o `.env.local` está correto
-- ✅ Verifique erros de CORS no console
-
-## 📈 Roadmap
-
-- [ ] Sistema de inscrição em viagens
-- [ ] Integração com gateway de pagamento
-- [ ] Notificações em tempo real
-- [ ] Dashboard administrativo
-- [ ] Integração com mapas
-- [ ] Sistema de avaliações
-- [ ] Chat entre usuários
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto é um MVP educacional.
-
-## 👥 Autores
-
-Equipe Frete Inteligente
 
 ---
 
-**Versão:** 2.0.0  
-**Última Atualização:** Outubro 2025
+## 🎮 Como Usar
 
-Para mais detalhes técnicos, consulte a [Documentação Técnica](DOCUMENTACAO-TECNICA.md).
+### 1️⃣ Primeiro Acesso
+
+1. **Inicie o sistema** (Docker ou local)
+
+2. **Acesse:** http://localhost:3000
+
+3. **Cadastre-se:**
+   - Escolha seu perfil: Estudante, Motorista ou Empresa
+   - Preencha seus dados
+   - Clique em "Cadastrar"
+
+4. **Faça login:**
+   - Use o email e senha que cadastrou
+   - Acesse o feed de postagens
+
+### 2️⃣ Criar uma Postagem
+
+1. Clique no botão **"+"** ou **"Nova Postagem"**
+2. Preencha:
+   - Título
+   - Região
+   - Descrição
+   - Preço
+3. Clique em **"Publicar"**
+
+### 3️⃣ Gerenciar Viagens
+
+- **Motoristas/Empresas:**
+  - Crie viagens baseadas nas postagens
+  - Defina horários e capacidade
+  - Acompanhe check-ins
+
+- **Estudantes:**
+  - Visualize viagens disponíveis
+  - Faça check-in
+  - Acompanhe histórico
+
+---
+
+## 🧪 Testando a API
+
+### Opção 1: Script Automático
+
+```powershell
+.\scripts\TESTAR-API.ps1
+```
+
+### Opção 2: Postman/Insomnia
+
+Importe os exemplos de [`docs/EXEMPLOS-JSON.md`](./docs/EXEMPLOS-JSON.md)
+
+### Opção 3: PowerShell Manual
+
+```powershell
+# Listar usuários
+Invoke-RestMethod -Uri "http://localhost:8080/api/usuarios"
+
+# Criar usuário
+$usuario = @{
+    tipo = "CLIENTE"
+    nome = "João Silva"
+    email = "joao@email.com"
+    cpf = "12345678901"
+    telefone = "(85) 98765-4321"
+    senhaHash = "senha123"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:8080/api/usuarios" `
+    -Method POST `
+    -Body $usuario `
+    -ContentType "application/json"
+```
+
+---
+
+## 🐛 Solução de Problemas
+
+### Backend não inicia
+
+1. **Verifique Java:**
+   ```bash
+   java -version  # Deve ser 21+
+   ```
+
+2. **Verifique porta 8080:**
+   ```bash
+   netstat -ano | findstr :8080
+   ```
+
+3. **Veja os logs** e consulte [`docs/COMO-EXECUTAR-SOLUCOES.md`](./docs/COMO-EXECUTAR-SOLUCOES.md)
+
+### Frontend não inicia
+
+1. **Verifique Node.js:**
+   ```bash
+   node --version  # Deve ser 22+
+   ```
+
+2. **Verifique .env.local:**
+   ```bash
+   cat transport-app/.env.local
+   # Deve ter: NEXT_PUBLIC_API_URL=http://localhost:8080/api
+   ```
+
+3. **Reinstale dependências:**
+   ```bash
+   cd transport-app
+   rm -rf node_modules
+   npm install
+   ```
+
+### Docker não funciona
+
+1. **Verifique Docker Desktop está rodando**
+
+2. **Execute o diagnóstico:**
+   ```bash
+   .\scripts\docker-start.bat
+   # Escolha opção 4 (Ver logs)
+   ```
+
+3. **Consulte:** [`docs/DOCKER-GUIA.md`](./docs/DOCKER-GUIA.md)
+
+---
+
+## 📊 Status do Projeto
+
+- ✅ Backend (Spring Boot) - **Funcional**
+- ✅ Frontend (Next.js) - **Funcional**
+- ✅ Autenticação - **Implementado (Simulado)**
+- ✅ CRUD Completo - **Funcional**
+- ✅ Integração Frontend-Backend - **Funcional**
+- ✅ Docker - **Funcional**
+- ⏳ JWT Real - **Planejado**
+- ⏳ Testes Automatizados - **Planejado**
+- ⏳ Deploy em Produção - **Planejado**
+
+---
+
+## 🤝 Comandos Rápidos
+
+| Ação | Comando |
+|------|---------|
+| **Iniciar tudo (Docker)** | `.\scripts\docker-start.bat` |
+| **Backend (Local)** | `mvnw.cmd spring-boot:run` |
+| **Frontend (Local)** | `cd transport-app && npm run dev` |
+| **Testar API** | `.\scripts\TESTAR-API.ps1` |
+| **Ver logs Docker** | `docker-compose -f docker/docker-compose.dev.yml logs -f` |
+| **Parar Docker** | `docker-compose -f docker/docker-compose.dev.yml down` |
+| **Diagnóstico** | `.\scripts\DIAGNOSTICAR-ERRO.ps1` |
+
+---
+
+## 📞 Links Úteis
+
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8080/api
+- **H2 Console:** http://localhost:8080/h2-console
+- **Documentação API:** [`docs/EXEMPLOS-JSON.md`](./docs/EXEMPLOS-JSON.md)
+- **Guia Docker:** [`docs/DOCKER-GUIA.md`](./docs/DOCKER-GUIA.md)
+
+---
+
+## 📄 Licença
+
+Este projeto é um MVP acadêmico desenvolvido para facilitar o transporte universitário.
+
+---
+
+**Desenvolvido com ❤️ para facilitar o transporte universitário!**

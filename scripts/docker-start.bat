@@ -49,7 +49,7 @@ echo.
 echo ========================================
 echo [2/3] Construindo imagens...
 echo ========================================
-docker-compose -f docker-compose.dev.yml build
+docker-compose -f docker/docker-compose.dev.yml build
 if errorlevel 1 (
     echo [ERRO] Falha ao construir imagens!
     pause
@@ -60,7 +60,7 @@ echo.
 echo ========================================
 echo [3/3] Iniciando containers...
 echo ========================================
-docker-compose -f docker-compose.dev.yml up -d
+docker-compose -f docker/docker-compose.dev.yml up -d
 if errorlevel 1 (
     echo [ERRO] Falha ao iniciar containers!
     pause
@@ -77,8 +77,8 @@ echo Frontend: http://localhost:3000
 echo H2 Console: http://localhost:8080/h2-console
 echo.
 echo Comandos uteis:
-echo - Ver logs: docker-compose -f docker-compose.dev.yml logs -f
-echo - Parar: docker-compose -f docker-compose.dev.yml down
+echo - Ver logs: docker-compose -f docker/docker-compose.dev.yml logs -f
+echo - Parar: docker-compose -f docker/docker-compose.dev.yml down
 echo.
 goto end
 
@@ -87,7 +87,7 @@ echo.
 echo ========================================
 echo [2/3] Construindo imagens...
 echo ========================================
-docker-compose -f docker-compose.full.yml build
+docker-compose -f docker/docker-compose.full.yml build
 if errorlevel 1 (
     echo [ERRO] Falha ao construir imagens!
     pause
@@ -98,7 +98,7 @@ echo.
 echo ========================================
 echo [3/3] Iniciando containers...
 echo ========================================
-docker-compose -f docker-compose.full.yml up -d
+docker-compose -f docker/docker-compose.full.yml up -d
 if errorlevel 1 (
     echo [ERRO] Falha ao iniciar containers!
     pause
@@ -117,7 +117,7 @@ echo.
 echo Aguarde ~30 segundos para tudo inicializar!
 echo.
 echo Comandos uteis:
-echo - Ver logs: docker-compose -f docker-compose.full.yml logs -f
+echo - Ver logs: docker-compose -f docker/docker-compose.full.yml logs -f
 echo - Parar: docker-compose -f docker-compose.full.yml down
 echo.
 goto end
@@ -125,7 +125,7 @@ goto end
 :stop
 echo.
 echo Parando containers...
-docker-compose -f docker-compose.dev.yml down 2>nul
+docker-compose -f docker/docker-compose.dev.yml down 2>nul
 docker-compose -f docker-compose.full.yml down 2>nul
 echo [OK] Containers parados!
 goto end
@@ -138,9 +138,9 @@ echo 2. Completo
 set /p log_opcao="Digite: "
 
 if "%log_opcao%"=="1" (
-    docker-compose -f docker-compose.dev.yml logs -f
+    docker-compose -f docker/docker-compose.dev.yml logs -f
 ) else (
-    docker-compose -f docker-compose.full.yml logs -f
+    docker-compose -f docker/docker-compose.full.yml logs -f
 )
 goto end
 
@@ -151,7 +151,7 @@ set /p confirm="Tem certeza? (s/n): "
 if /i not "%confirm%"=="s" goto end
 
 echo Parando containers...
-docker-compose -f docker-compose.dev.yml down -v 2>nul
+docker-compose -f docker/docker-compose.dev.yml down -v 2>nul
 docker-compose -f docker-compose.full.yml down -v 2>nul
 
 echo Removendo imagens...
