@@ -7,24 +7,45 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/AuthContext"
 
 export function LoginForm() {
   const router = useRouter()
+  const { login } = useAuth()
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   })
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Login:", formData)
-    router.push("/feed")
+    setIsLoading(true)
+
+    try {
+      await login({ email: formData.email, password: formData.password })
+      toast({
+        title: "Login realizado com sucesso!",
+        description: "Bem-vindo ao Frete Inteligente",
+      })
+      router.push("/feed")
+    } catch (error) {
+      toast({
+        title: "Erro ao fazer login",
+        description: error instanceof Error ? error.message : "Verifique suas credenciais e tente novamente",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -67,8 +88,12 @@ export function LoginForm() {
             />
           </div>
 
-          <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-            Entrar
+          <Button 
+            type="submit" 
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            disabled={isLoading}
+          >
+            {isLoading ? "Entrando..." : "Entrar"}
           </Button>
         </form>
       </CardContent>

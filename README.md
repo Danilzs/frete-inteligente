@@ -1,192 +1,225 @@
-# Frete Inteligente - Sistema Inteligente de Gestão de Fretes
+# 🚐 Frete Inteligente
 
-[![Licença: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Versão](https://img.shields.io/badge/Version-1.0-blue.svg)]()
-[![Status](https://img.shields.io/badge/Status-Planning-orange.svg)]()
+**MVP - Plataforma Full-Stack de Transporte Universitário**
 
-## Visão Geral do Projeto
+Conectando motoristas, empresas de transporte e estudantes em uma única plataforma moderna e eficiente.
 
-**Frete Inteligente** é um sistema inteligente e abrangente de gestão de fretes e logística, projetado para revolucionar o setor de transporte por meio de tecnologia avançada, aprendizado de máquina e automação de processos. O objetivo principal é otimizar rotas, reduzir custos operacionais, melhorar a eficiência e proporcionar transparência em tempo real para todos os envolvidos na cadeia logística.
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-green)
+![Next.js](https://img.shields.io/badge/Next.js-16.0.0-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
 
-### Principais Funcionalidades
+## 📋 Sobre o Projeto
 
-🚚 **Otimização Inteligente de Rotas** - Algoritmos baseados em ML para planejamento de rotas otimizadas  
-📍 **Rastreamento em Tempo Real da Frota** - Integração de GPS e IoT para monitoramento veicular ao vivo  
-📊 **Analytics Preditivo** - Previsão para manutenção, demanda e tempos de entrega  
-📦 **Planejamento Automatizado de Cargas** - Otimização 3D de carga para máxima eficiência  
-📱 **Acesso Multi-plataforma** - Dashboard web e aplicativos móveis  
-🔗 **Integração com Terceiros** - Conexão transparente com ERP e provedores logísticos  
+O **Frete Inteligente** é uma aplicação completa que facilita a conexão entre:
+- 🏢 **Empresas de transporte** que oferecem serviços
+- 🚗 **Motoristas autônomos** que buscam clientes
+- 🎓 **Estudantes** que precisam de transporte para universidades
 
----
+### ✨ Funcionalidades Principais
 
-## 🏁 Objetivo do MVP
+- ✅ Sistema completo de autenticação (login/registro)
+- ✅ Feed dinâmico de ofertas de transporte
+- ✅ Criação e gerenciamento de postagens
+- ✅ Perfis de usuário diferenciados (Empresa, Autônomo, Cliente)
+- ✅ Interface moderna e responsiva
+- ✅ API RESTful completa
+- ✅ Integração frontend-backend funcionando
 
-Entregar uma versão inicial do Frete Inteligente que resolva os maiores gargalos da comunicação e organização entre passageiros, motoristas e empresas, com uma plataforma simples, funcional e validada junto aos primeiros usuários.
+## 🏗️ Arquitetura
 
-### 🚀 Funcionalidades Essenciais do MVP
+### Stack Tecnológico
 
-1. **Cadastro e Login**
-   - Cadastro de usuário (passageiro, motorista autônomo ou empresa).
-   - Campos básicos: nome, CPF, telefone, e-mail, senha.
-   - Upload simples de documentos (somente motorista/empresa).
-   - Login seguro com e-mail + senha.
+**Backend:**
+- Java 21
+- Spring Boot 3.5.6
+- MySQL 8.0
+- JPA/Hibernate
+- Flyway (migrações)
+- Maven
 
-2. **Gestão de Passageiros (Check-in de presença)**
-   - Passageiro marca no app se vai embarcar ou não em um determinado horário/rota.
-   - Check-in com prazo definido (ex.: até 22h do dia anterior).
-   - Motorista tem acesso à lista final de passageiros confirmados.
-   - Lista exibida em ordem otimizada de embarque.
+**Frontend:**
+- Next.js 16.0.0
+- React 19.2.0
+- TypeScript 5
+- Tailwind CSS 4.1.9
+- Radix UI Components
+- pnpm
 
-3. **Pagamentos**
-   - Integração inicial com Pix Copia e Cola (gateway mais simples).
-   - Tela de pagamentos no app: status de pago/não pago.
-   - Histórico básico de pagamentos.
-   - Envio automático de comprovante para o motorista.
-
-4. **Calendário de Viagens**
-   - Motorista/empresa pode criar rotas fixas com horários pré-definidos.
-   - Passageiro consegue visualizar os horários e marcar presença (check-in).
-   - Notificações automáticas lembrando do prazo de confirmação.
-
-5. **Localização em Tempo Real**
-   - Passageiros podem visualizar no mapa a posição do veículo em tempo real.
-   - Motorista compartilha rota automaticamente ao iniciar a viagem.
-   - Simples integração com Google Maps API ou Mapbox.
-
-6. **Otimização de Rotas (versão simplificada)**
-   - Uso de algoritmo inicial de ordenação de paradas (ex.: menor distância entre os pontos).
-   - Motorista visualiza no mapa a rota sugerida pelo sistema.
-   - Possibilidade de reordenar manualmente (caso necessário).
-
-### 📱 Fluxo Básico do MVP
-
-1. Passageiro faz cadastro/login.
-2. Visualiza calendário de rotas disponíveis.
-3. Confirma presença (check-in) até o prazo limite.
-4. Motorista acessa lista de passageiros confirmados, com rota otimizada.
-5. Motorista inicia viagem → rastreamento em tempo real ativado.
-6. Passageiros acompanham no mapa a localização do veículo.
-7. Pagamento feito pelo app → status atualizado automaticamente.
-
----
-
-## Estrutura da Documentação
-
-Este repositório contém documentação abrangente do projeto seguindo o padrão ISO/IEC/IEEE 29148:2018:
-
-### 📋 Documentação de Requisitos
-- **[briefing_iso_srs.md](./briefing_iso_srs.md)** - Especificação completa de requisitos de software conforme padrões ISO
-- **[srs.md](./srs.md)** - Resumo executivo e guia rápido de referência
-
-### 🏗️ Documentação de Arquitetura  
-- **[architecture.md](./architecture.md)** - Arquitetura detalhada do sistema e design técnico
-
-## Escopo do Projeto
-
-O sistema Frete Inteligente aborda desafios críticos da indústria de fretes e logística:
-
-- **Otimização de Custos**: Reduzir custos de transporte em 15-20%
-- **Precisão nas Entregas**: Melhorar entregas pontuais para mais de 95%
-- **Eficiência Operacional**: Automatizar processos manuais de planejamento
-- **Visibilidade em Tempo Real**: Proporcionar transparência total da carga
-- **Manutenção Preditiva**: Reduzir tempo de inatividade dos veículos
-- **Conformidade Regulatória**: Garantir adesão às normas de transporte
-
-## Usuários-Alvo
-
-- **Gestores de Logística** - Planejamento estratégico e supervisão
-- **Despachantes** - Operações diárias e gestão de rotas  
-- **Motoristas** - Acesso móvel e atualização de status
-- **Clientes** - Rastreamento e notificações de envio
-- **Administradores de Sistema** - Configuração e manutenção da plataforma
-
-## Destaques Tecnológicos
-
-- **Arquitetura Cloud-Native** - Microsserviços escaláveis em Kubernetes
-- **Machine Learning** - Algoritmos de otimização com TensorFlow
-- **Processamento em Tempo Real** - Arquitetura orientada a eventos com Kafka
-- **Frontend Moderno** - Web app em React.js e aplicativos móveis em React Native
-- **Integração Empresarial** - APIs RESTful e suporte a webhooks
-- **Suporte Multilíngue** - Português, Inglês e Espanhol
-
-## Conformidade & Padrões
-
-- ✅ **ISO/IEC/IEEE 29148:2018** - Padrões de engenharia de requisitos
-- ✅ **GDPR & LGPD** - Conformidade com privacidade e proteção de dados
-- ✅ **ISO 9001:2015** - Processos de gestão da qualidade
-- ✅ **ISO/IEC 27001:2013** - Gestão de segurança da informação
-- ✅ **Regulamentos de Transporte** - Conformidade com DOT local
-
-## Primeiros Passos
+## 🚀 Como Executar
 
 ### Pré-requisitos
-- Java/SpringBoot, Node.js 18+ e Python 3.9+
-- Docker e cluster Kubernetes
-- PostgreSQL 14+ e Redis 6+
-- Conta em provedor de nuvem (AWS/Azure/GCP)
 
-### Execução Rápida
+- Java 21
+- Maven 3.6+
+- MySQL 8.0
+- Node.js 18+
+- pnpm (ou npm)
+
+### 1️⃣ Backend
+
 ```bash
-# Clone o repositório
-git clone https://github.com/slnntk/frete-inteligente.git
+# 1. Certifique-se de que o MySQL está rodando na porta 3307
+# O banco será criado automaticamente
 
-# Consulte a especificação de requisitos
-cat briefing_iso_srs.md
+# 2. Execute o backend
+mvn spring-boot:run
 
-# Consulte a arquitetura do sistema  
-cat architecture.md
-
-# Configure o ambiente de desenvolvimento (em breve)
-# npm install && docker-compose up
+# O backend estará disponível em http://localhost:8080
 ```
 
-## Status do Projeto
+### 2️⃣ Frontend
 
-🟡 **Fase Atual**: Análise de Requisitos & Design do Sistema  
-📅 **Início**: Agosto de 2025  
-👥 **Equipe**: Onboarding da equipe de desenvolvimento  
-📈 **Próximo Marco**: Validação da arquitetura técnica  
+```bash
+# 1. Navegue até a pasta do frontend
+cd transport-app
 
-### Roadmap
+# 2. Instale as dependências
+pnpm install
 
-- [x] Especificação de requisitos (conformidade ISO)
-- [x] Design da arquitetura do sistema
-- [ ] Prova de conceito técnica
-- [ ] Desenvolvimento do MVP
-- [ ] Programa de testes beta
-- [ ] Implantação em produção
+# 3. Crie o arquivo .env.local
+echo "NEXT_PUBLIC_API_URL=http://localhost:8080/api" > .env.local
 
-## Contribuição
+# 4. Execute o servidor de desenvolvimento
+pnpm dev
 
-Contribuições ao projeto Frete Inteligente são bem-vindas! Leia nossas diretrizes de contribuição e código de conduta.
+# O frontend estará disponível em http://localhost:3000
+```
 
-### Fluxo de Desenvolvimento
-1. Revise a [documentação SRS](./briefing_iso_srs.md)
-2. Confira o [design da arquitetura](./architecture.md)  
-3. Siga os padrões e práticas de codificação
-4. Envie pull requests com testes abrangentes
+### 🎉 Primeiro Acesso
 
-## Licença
+1. Acesse `http://localhost:3000`
+2. Clique em **"Cadastre-se"**
+3. Selecione o tipo de usuário:
+   - 🏢 **Empresa de Transporte**
+   - 🚗 **Motorista Autônomo**
+   - 🎓 **Cliente/Estudante**
+4. Preencha os dados e cadastre-se
+5. Faça login com o email cadastrado
+6. Explore o sistema!
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## 📁 Estrutura do Projeto
 
-## Suporte
+```
+frete-inteligente/
+├── src/                          # Backend (Spring Boot)
+│   └── main/
+│       ├── java/                 # Código Java
+│       │   └── frete_inteligente/
+│       │       ├── controller/   # Controllers REST
+│       │       ├── domain/       # Entidades JPA
+│       │       ├── repository/   # Repositórios
+│       │       └── config/       # Configurações
+│       └── resources/
+│           ├── application.yml   # Configuração da aplicação
+│           └── db/migration/     # Migrações Flyway
+│
+├── transport-app/                # Frontend (Next.js)
+│   ├── app/                      # Páginas Next.js
+│   ├── components/               # Componentes React
+│   ├── contexts/                 # Contextos (Auth, etc)
+│   ├── services/                 # Serviços de API
+│   ├── types/                    # Tipos TypeScript
+│   └── lib/                      # Utilitários
+│
+├── docker-compose.yml            # Docker Compose (MySQL)
+├── pom.xml                       # Configuração Maven
+└── README.md                     # Este arquivo
+```
 
-Para dúvidas, problemas ou oportunidades de colaboração:
+## 📡 API Endpoints
 
-- 📧 **Email**: [Contato do Projeto]
-- 💬 **Issues**: [GitHub Issues](https://github.com/slnntk/frete-inteligente/issues)
-- 📖 **Documentação**: Consulte os documentos SRS e de arquitetura
-- 🤝 **Colaboração**: Aberto a parcerias e integrações
+### Autenticação
+- `POST /api/auth/login` - Login de usuário
 
-## Agradecimentos
+### Usuários
+- `GET /api/usuarios` - Listar usuários
+- `POST /api/usuarios` - Criar usuário
+- `GET /api/usuarios/{id}` - Buscar usuário
+- `PUT /api/usuarios/{id}` - Atualizar usuário
+- `DELETE /api/usuarios/{id}` - Deletar usuário
 
-- Comunidade de padrões ISO/IEC/IEEE pela orientação em engenharia de requisitos
-- Projetos open source de logística e transporte pela inspiração
-- Comunidade cloud-native e de microsserviços pelos padrões arquiteturais
+### Postagens
+- `GET /api/postagens` - Listar postagens
+- `POST /api/postagens` - Criar postagem
+- `GET /api/postagens/{id}` - Buscar postagem
+- `PUT /api/postagens/{id}` - Atualizar postagem
+- `DELETE /api/postagens/{id}` - Deletar postagem
+
+### Viagens
+- `GET /api/viagens` - Listar viagens
+- `POST /api/viagens` - Criar viagem
+- `GET /api/viagens/status/{status}` - Buscar por status
+
+### Check-ins
+- `GET /api/checkins` - Listar check-ins
+- `POST /api/checkins` - Criar check-in
+
+**📚 Documentação completa:** Veja `DOCUMENTACAO-TECNICA.md`
+
+## 🔧 Configuração
+
+### Backend - application.yml
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/frete_inteligente
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: validate
+server:
+  port: 8080
+```
+
+### Frontend - .env.local
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+```
+
+## 🐛 Troubleshooting
+
+### Backend não inicia
+- ✅ Verifique se o MySQL está rodando na porta 3307
+- ✅ Confirme as credenciais no `application.yml`
+- ✅ Certifique-se de que o Java 21 está instalado
+
+### Frontend não conecta
+- ✅ Verifique se o backend está rodando
+- ✅ Confirme o `.env.local` está correto
+- ✅ Verifique erros de CORS no console
+
+## 📈 Roadmap
+
+- [ ] Sistema de inscrição em viagens
+- [ ] Integração com gateway de pagamento
+- [ ] Notificações em tempo real
+- [ ] Dashboard administrativo
+- [ ] Integração com mapas
+- [ ] Sistema de avaliações
+- [ ] Chat entre usuários
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto é um MVP educacional.
+
+## 👥 Autores
+
+Equipe Frete Inteligente
 
 ---
 
-**"Revolucionando a gestão de fretes através da tecnologia inteligente"**
+**Versão:** 2.0.0  
+**Última Atualização:** Outubro 2025
 
-*Este projeto visa transformar a indústria de logística combinando algoritmos avançados, processamento de dados em tempo real e design centrado no usuário para criar a próxima geração de sistemas inteligentes de transporte.*
+Para mais detalhes técnicos, consulte a [Documentação Técnica](DOCUMENTACAO-TECNICA.md).

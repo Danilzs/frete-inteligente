@@ -1,58 +1,64 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Home, Users, Briefcase, MessageSquare, Bell, Search, Plus } from "lucide-react"
+import { Home, Users, Briefcase, MessageSquare, Bell, Search, Plus, LogOut } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { PostCard } from "@/components/post-card"
 import { CreatePostModal } from "@/components/create-post-modal"
-
-const mockPosts = [
-  {
-    id: "1",
-    author: {
-      name: "João Silva",
-      role: "Motorista Autônomo",
-      avatar: "/professional-driver.png",
-    },
-    content: "Acabei de completar mais uma viagem com sucesso! Transporte escolar é minha paixão. 🚐",
-    timestamp: "2h atrás",
-    likes: 24,
-    comments: 5,
-  },
-  {
-    id: "2",
-    author: {
-      name: "TransLog Transportes",
-      role: "Empresa de Transporte",
-      avatar: "/transport-company-logo.png",
-    },
-    content:
-      "Estamos contratando! Procuramos motoristas experientes para rotas escolares. Interessados, entrem em contato.",
-    timestamp: "5h atrás",
-    likes: 42,
-    comments: 12,
-  },
-  {
-    id: "3",
-    author: {
-      name: "Maria Santos",
-      role: "Coordenadora Escolar",
-      avatar: "/school-coordinator.jpg",
-    },
-    content:
-      "Dica para pais: sempre verifiquem as credenciais e avaliações dos motoristas antes de contratar o serviço de transporte escolar.",
-    timestamp: "1d atrás",
-    likes: 67,
-    comments: 18,
-  },
-]
+import { useAuth } from "@/contexts/AuthContext"
+import { postagemService } from "@/services/postagem.service"
+import type { Postagem } from "@/types"
 
 export function FeedLayout() {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false)
+  const [postagens, setPostagens] = useState<Postagem[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const { usuario, logout } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!usuario) {
+      router.push("/login")
+      return
+    }
+
+    carregarPostagens()
+  }, [usuario, router])
+
+  const carregarPostagens = async () => {
+    try {
+      setIsLoading(true)
+      const data = await postagemService.listar()
+      setPostagens(data)
+    } catch (error) {
+      console.error("Erro ao carregar postagens:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleLogout = () => {
+    logout()
+    router.push("/login")
+  }
+
+  const getTipoUsuario = (tipo: string) => {
+    switch (tipo) {
+      case "EMPRESA":
+        return "Empresa de Transporte"
+      case "AUTONOMO":
+        return "Motorista Autônomo"
+      case "CLIENTE":
+        return "Cliente/Estudante"
+      default:
+        return tipo
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -88,9 +94,20 @@ export function FeedLayout() {
             <Link href="/profile">
               <Avatar className="h-8 w-8 cursor-pointer border-2 border-transparent hover:border-primary transition-colors">
                 <AvatarImage src="/diverse-user-avatars.png" />
-                <AvatarFallback className="bg-primary text-primary-foreground">U</AvatarFallback>
+                <AvatarFallback className="bg-primary text-primary-foreground">
+                  {usuario?.nome.charAt(0).toUpperCase() || "U"}
+                </AvatarFallback>
               </Avatar>
             </Link>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-foreground hover:text-primary"
+              onClick={handleLogout}
+              title="Sair"
+            >
+              <LogOut className="h-5 w-5" />
+            </Button>
           </nav>
         </div>
       </header>
@@ -104,10 +121,12 @@ export function FeedLayout() {
               <CardHeader className="text-center pb-0">
                 <Avatar className="h-20 w-20 mx-auto mb-3">
                   <AvatarImage src="/user-profile-illustration.png" />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-2xl">U</AvatarFallback>
+                  <AvatarFallback className="bg-primary text-primary-foreground text-2xl">
+                    {usuario?.nome.charAt(0).toUpperCase() || "U"}
+                  </AvatarFallback>
                 </Avatar>
-                <h3 className="font-semibold text-foreground">Seu Nome</h3>
-                <p className="text-sm text-muted-foreground">Seu cargo/função</p>
+                <h3 className="font-semibold text-foreground">{usuario?.nome || "Usuário"}</h3>
+                <p className="text-sm text-muted-foreground">{getTipoUsuario(usuario?.tipo || "")}</p>
               </CardHeader>
               <CardContent className="pt-4">
                 <div className="space-y-2 text-sm">
@@ -132,14 +151,16 @@ export function FeedLayout() {
                 <div className="flex items-center gap-3">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src="/diverse-user-avatars.png" />
-                    <AvatarFallback className="bg-primary text-primary-foreground">U</AvatarFallback>
+                    <AvatarFallback className="bg-primary text-primary-foreground">
+                      {usuario?.nome.charAt(0).toUpperCase() || "U"}
+                    </AvatarFallback>
                   </Avatar>
                   <Button
                     variant="outline"
                     className="flex-1 justify-start text-muted-foreground hover:bg-input bg-transparent"
                     onClick={() => setIsCreatePostOpen(true)}
                   >
-                    Compartilhe uma atualização...
+                    Compartilhe uma nova oferta de transporte...
                   </Button>
                   <Button
                     size="icon"
@@ -153,9 +174,53 @@ export function FeedLayout() {
             </Card>
 
             {/* Posts */}
-            {mockPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
+            {isLoading ? (
+              <Card className="bg-card border-border">
+                <CardContent className="pt-6 text-center text-muted-foreground">
+                  Carregando postagens...
+                </CardContent>
+              </Card>
+            ) : postagens.length === 0 ? (
+              <Card className="bg-card border-border">
+                <CardContent className="pt-6 text-center text-muted-foreground">
+                  Nenhuma postagem disponível. Seja o primeiro a compartilhar!
+                </CardContent>
+              </Card>
+            ) : (
+              postagens.map((postagem) => (
+                <Card key={postagem.id} className="bg-card border-border">
+                  <CardHeader>
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-12 w-12">
+                        <AvatarFallback className="bg-primary text-primary-foreground">
+                          {typeof postagem.autor === 'object' && 'nome' in postagem.autor 
+                            ? postagem.autor.nome.charAt(0).toUpperCase()
+                            : "U"}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-foreground">
+                          {typeof postagem.autor === 'object' && 'nome' in postagem.autor 
+                            ? postagem.autor.nome
+                            : "Usuário"}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {typeof postagem.autor === 'object' && 'tipo' in postagem.autor 
+                            ? getTipoUsuario(postagem.autor.tipo)
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <h3 className="text-lg font-bold text-foreground">{postagem.titulo}</h3>
+                    <p className="text-sm text-muted-foreground">📍 {postagem.regiao}</p>
+                    <p className="text-foreground">{postagem.descricao}</p>
+                    <p className="text-lg font-bold text-primary">R$ {postagem.preco.toFixed(2)}</p>
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </div>
 
           {/* Right Sidebar */}
@@ -187,7 +252,11 @@ export function FeedLayout() {
       </main>
 
       {/* Create Post Modal */}
-      <CreatePostModal open={isCreatePostOpen} onOpenChange={setIsCreatePostOpen} />
+      <CreatePostModal 
+        open={isCreatePostOpen} 
+        onOpenChange={setIsCreatePostOpen}
+        onPostCreated={carregarPostagens}
+      />
     </div>
   )
 }
