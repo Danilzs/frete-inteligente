@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Home, LogIn, UserPlus, User } from "lucide-react"
+import { Home, LogIn, UserPlus, User, Users } from "lucide-react"
 
 export default function NavegacaoPage() {
   return (
@@ -49,6 +49,16 @@ export default function NavegacaoPage() {
             >
               <User className="h-5 w-5" />
               <span className="text-base">Perfil da Empresa</span>
+            </Button>
+          </Link>
+
+          <Link href="/usuarios" className="block">
+            <Button
+              variant="outline"
+              className="w-full h-14 justify-start gap-3 border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors bg-transparent"
+            >
+              <Users className="h-5 w-5" />
+              <span className="text-base">Gerenciar Usuários (CRUD)</span>
             </Button>
           </Link>
 

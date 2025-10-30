@@ -24,12 +24,15 @@ O **Frete Inteligente** é uma plataforma web que facilita a conexão entre:
 
 ### Funcionalidades Principais
 
-✅ Cadastro de usuários (Estudante, Motorista, Empresa)  
-✅ Sistema de postagens de ofertas de transporte  
-✅ Criação e gerenciamento de viagens  
-✅ Check-in de passageiros  
-✅ Histórico de viagens e pagamentos  
-✅ Interface moderna e responsiva  
+✅ **CRUD Completo de Usuários** - Gerenciamento dinâmico de Clientes, Autônomos e Empresas  
+✅ **Cadastro de usuários** (Estudante, Motorista, Empresa)  
+✅ **Sistema de postagens** de ofertas de transporte  
+✅ **Criação e gerenciamento de viagens**  
+✅ **Check-in de passageiros**  
+✅ **Histórico de viagens e pagamentos**  
+✅ **Formulário Dinâmico** que muda conforme o tipo de usuário  
+✅ **Dashboard com Estatísticas** em tempo real  
+✅ **Interface moderna e responsiva**  
 
 ---
 
@@ -140,6 +143,8 @@ Toda a documentação está organizada na pasta [`docs/`](./docs):
 | [`DOCUMENTACAO-TECNICA.md`](./docs/DOCUMENTACAO-TECNICA.md) | Documentação técnica completa |
 | [`architecture.md`](./docs/architecture.md) | Arquitetura do sistema |
 | [`srs.md`](./docs/srs.md) | Especificação de requisitos |
+| [`CRUD-USUARIOS.md`](./docs/CRUD-USUARIOS.md) | **NOVO!** Documentação do CRUD Completo |
+| [`CRUD-GUIA-RAPIDO.md`](./docs/CRUD-GUIA-RAPIDO.md) | **NOVO!** Guia rápido do CRUD |
 
 ### Docker
 
@@ -235,6 +240,24 @@ frete-inteligente/
 4. **Faça login:**
    - Use o email e senha que cadastrou
    - Acesse o feed de postagens
+
+### 🆕 Gerenciar Usuários (CRUD)
+
+1. **Acesse:** http://localhost:3000/usuarios
+
+2. **Visualize o Dashboard:**
+   - Veja estatísticas de todos os tipos de usuário
+   - Filtre por Cliente, Autônomo ou Empresa
+
+3. **Criar Novo Usuário:**
+   - Clique em "Novo Usuário"
+   - Selecione o tipo (o formulário muda automaticamente!)
+   - Preencha os campos e cadastre
+
+4. **Editar/Excluir:**
+   - Use os botões de ação na tabela
+   - Edição com validação em tempo real
+   - Exclusão com confirmação de segurança
 
 ### 2️⃣ Criar uma Postagem
 
@@ -351,7 +374,12 @@ Invoke-RestMethod -Uri "http://localhost:8080/api/usuarios" `
 - ✅ Backend (Spring Boot) - **Funcional**
 - ✅ Frontend (Next.js) - **Funcional**
 - ✅ Autenticação - **Implementado (Simulado)**
-- ✅ CRUD Completo - **Funcional**
+- ✅ **CRUD Completo de Usuários** - **Funcional** ⭐ **NOVO!**
+  - ✅ Cliente/Estudante
+  - ✅ Motorista Autônomo
+  - ✅ Empresa de Transporte
+- ✅ **Formulário Dinâmico** - **Funcional** ⭐ **NOVO!**
+- ✅ **Dashboard com Estatísticas** - **Funcional** ⭐ **NOVO!**
 - ✅ Integração Frontend-Backend - **Funcional**
 - ✅ Docker - **Funcional**
 - ⏳ JWT Real - **Planejado**
@@ -368,6 +396,7 @@ Invoke-RestMethod -Uri "http://localhost:8080/api/usuarios" `
 | **Backend (Local)** | `mvnw.cmd spring-boot:run` |
 | **Frontend (Local)** | `cd transport-app && npm run dev` |
 | **Testar API** | `.\scripts\TESTAR-API.ps1` |
+| **Testar CRUD** | `.\scripts\TESTAR-CRUD.ps1` |
 | **Ver logs Docker** | `docker-compose -f docker/docker-compose.dev.yml logs -f` |
 | **Parar Docker** | `docker-compose -f docker/docker-compose.dev.yml down` |
 | **Diagnóstico** | `.\scripts\DIAGNOSTICAR-ERRO.ps1` |
@@ -377,9 +406,11 @@ Invoke-RestMethod -Uri "http://localhost:8080/api/usuarios" `
 ## 📞 Links Úteis
 
 - **Frontend:** http://localhost:3000
+- **CRUD Usuários:** http://localhost:3000/usuarios ⭐ **NOVO!**
 - **Backend API:** http://localhost:8080/api
 - **H2 Console:** http://localhost:8080/h2-console
 - **Documentação API:** [`docs/EXEMPLOS-JSON.md`](./docs/EXEMPLOS-JSON.md)
+- **Documentação CRUD:** [`docs/CRUD-USUARIOS.md`](./docs/CRUD-USUARIOS.md) ⭐ **NOVO!**
 - **Guia Docker:** [`docs/DOCKER-GUIA.md`](./docs/DOCKER-GUIA.md)
 
 ---
